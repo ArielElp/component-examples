@@ -1,0 +1,2 @@
+[workspace]
+members = ["basic_component", "dependency1", "dependency2", "dependency3"]

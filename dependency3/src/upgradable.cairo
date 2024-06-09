@@ -39,7 +39,7 @@ mod upgradable {
         +Drop<TContractState>
     > of super::IUpgradable<ComponentState<TContractState>> {
         fn upgrade(ref self: ComponentState<TContractState>, new_class_hash: ClassHash) {
-            if get_dep_component!(self, Ownable).is_owner(get_caller_address()) {
+            if get_dep_component!(@self, Ownable).is_owner(get_caller_address()) {
                 replace_class_syscall(new_class_hash).unwrap();
                 let old_class_hash = self.current_implementation.read();
                 self.emit(ContractUpgraded { old_class_hash, new_class_hash });
